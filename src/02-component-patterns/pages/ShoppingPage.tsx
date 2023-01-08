@@ -28,8 +28,21 @@ export const ShoppingPage = () => {
 
     const [ shoppingCart, setShoppingCart ] = useState<{ [ key:string ]: ProductInCart }>({});
 
-    const onProductCountChange = ( count: number, product: Product) => {
-        console.log('algo', count, product );
+    const onProductCountChange = ( { count, product } : { count: number, product : Product }) => {
+        
+        setShoppingCart( oldShoppingCart => {
+
+            if( count === 0) {
+                const { [product.id] : toDelete, ...rest } = oldShoppingCart;
+
+                return { ...rest};
+            }
+
+            return{
+                ...oldShoppingCart,
+                [product.id] : { ...product, count}
+            }
+        });
     }
 
     return (
@@ -48,7 +61,7 @@ export const ShoppingPage = () => {
                             key={ product.id } 
                             product={ product } 
                             className="bg-dark text-white"
-                            onChange={ onProductCountChange }
+                            onChange={  onProductCountChange }
                         >
                             <ProductImage className="custom-img" style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)'}} />
                             <ProductTitle className=" text-bold" />
@@ -82,7 +95,11 @@ export const ShoppingPage = () => {
                 </ProductCard>
             </div>
 
-            
+            <div>
+                <code>
+                    { JSON.stringify( shoppingCart, null, 5)}
+                </code>
+            </div>
             
         </div>
     )
