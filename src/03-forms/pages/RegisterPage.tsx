@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import '../styles/styles.css';
 
 export const RegisterPage = () => {
@@ -19,8 +19,9 @@ export const RegisterPage = () => {
        }))
     }
 
-    const onSubmit = ( event: any) => {
+    const onSubmit = ( event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        console.log({ registerData })
     }
 
   return (
