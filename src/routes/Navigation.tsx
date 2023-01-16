@@ -1,6 +1,15 @@
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
-import { FormikBasicPage,FormikAbstract, FormikComponents, FormikYupPage, RegisterPage } from '../03-forms/pages';
+import { FormikBasicPage,
+         FormikAbstract, 
+         FormikComponents, 
+         FormikYupPage, 
+         RegisterPage, 
+         RegisterFormikPage,
+         DynamicForm 
+        } 
+from '../03-forms/pages';
+
 
 
 
@@ -30,6 +39,12 @@ export const Navigation = () => {
                             <NavLink to="/formik-abstract" className={ ({ isActive }) => isActive ? 'nav-active' : '' }>Formik - Abstract</NavLink>
                         </li>
                         <li>
+                            <NavLink to="/formik-register" className={ ({ isActive }) => isActive ? 'nav-active' : '' }>Formik - Register</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/formik-dynamic" className={ ({ isActive }) => isActive ? 'nav-active' : '' }>Formik - Dynamic Form</NavLink>
+                        </li>
+                        <li>
                             <NavLink to="/users" className={ ({ isActive }) => isActive ? 'nav-active' : '' }>Users</NavLink>
                         </li>
                     </ul>
@@ -41,6 +56,8 @@ export const Navigation = () => {
                     <Route path='/formik-yup' element={ <FormikYupPage/>}/>
                     <Route path='/formik-components' element={ <FormikComponents/>}/>
                     <Route path='/formik-abstract' element={ <FormikAbstract/> } />
+                    <Route path='/formik-register' element={ <RegisterFormikPage/> } />
+                    <Route path='/formik-dynamic' element={ <DynamicForm/> } />
                     <Route path="users" element={ <h1>Users Page</h1> } />
                     <Route path="home" element={ <h1>Home Page</h1> } />
                     <Route path='/register' element={ <RegisterPage/> } />
